@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.utils import timezone
 import datetime
 from todo.models import Task
@@ -52,4 +52,10 @@ def test_is_overdue_none(self):
    
 
    
-        
+class TodoViewTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_index_get(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)        
