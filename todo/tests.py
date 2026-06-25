@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.utils import timezone
-import datetime
+from datetime import datetime
 from todo.models import Task
 # Create your tests here.
 class SampleTestCase(TestCase):
@@ -8,7 +8,7 @@ class SampleTestCase(TestCase):
         self.assertEqual(1 + 2, 3)
 class TaskModelTestCase(TestCase):
     def test_create_task1(self):
-        due = timezone.make_aware(datetime.datetime(2026, 6, 30, 23, 59, 59))
+        due = timezone.make_aware(datetime(2026, 6, 30, 23, 59, 59))
         task = Task(title='task1', due_at=due)
         task.save()
         
