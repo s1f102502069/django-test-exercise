@@ -5,6 +5,7 @@
     <title>To Do Application</title>
     <meta charset="UTF-8">
     <meta name="author" content="INIAD">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'todo/style.css' %}">
   </head>
   <body>
@@ -49,9 +50,9 @@
               <li>Due at: {{ task.due_at }}</li>
               {% endif %}
               {% if task.completed %}
-              <li>Status: Completed</li>
+              <li><span class="status-badge is-completed">Completed</span></li>
               {% else %}
-              <li>Status: Not Completed</li>
+              <li><span class="status-badge is-pending">Not Completed</span></li>
               {% endif %}
             </ul>
           </div>
