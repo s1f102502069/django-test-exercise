@@ -19,7 +19,6 @@ def index(request):
     else:
         tasks = Task.objects.order_by('-posted_at')
 
-
     context = {
         'tasks': tasks
     }
@@ -55,7 +54,7 @@ def delete(request, task_id):
         task = Task.objects.get(pk=task_id)
     except Task.DoesNotExist:
         raise Http404("Task does not exist")
-    
+
     task.delete()
     return redirect('/')
 
@@ -91,5 +90,4 @@ def update(request, task_id):
         return redirect('detail', task_id=task.pk)
 
     return redirect('edit', task_id=task.pk)
-
 

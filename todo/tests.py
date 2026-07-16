@@ -157,4 +157,3 @@ class TodoViewTestCase(TestCase):
 
         task.refresh_from_db()
         self.assertFalse(task.completed)
-
