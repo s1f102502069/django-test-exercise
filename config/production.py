@@ -4,14 +4,13 @@ from .settings import *  # noqa: F403, F401
 
 DEBUG = False
 SECRET_KEY = os.environ['SECRET_KEY']
-ALLOWED_HOSTS.append(os.environ['RENDER_EXTERNAL_HOSTNAME'])  # noqa: F405
+ALLOWED_HOSTS.append(os.environ['RENDER_EXTERNAL_HOSTNAME'])
 
-MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # noqa: F405
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 DATABASES = {
     'default': dj_database_url.config()
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # noqa: F405
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-

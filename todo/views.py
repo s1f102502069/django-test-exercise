@@ -90,4 +90,3 @@ def update(request, task_id):
         return redirect('detail', task_id=task.pk)
 
     return redirect('edit', task_id=task.pk)
-
