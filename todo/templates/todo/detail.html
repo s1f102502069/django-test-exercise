@@ -1,31 +1,41 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
-
   <head>
     <title>To Do Application</title>
     <meta charset="UTF-8">
     <meta name="author" content="INIAD">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'todo/style.css' %}">
   </head>
-
   <body>
-    <h1>{{ task.title }}</h1>
-    <ul>
-      <li>Posted at: {{ task.posted_at }}</li>
-      {% if task.due_at %}
-      <li>Due at: {{ task.due_at }}</li>
-      {% endif %}
-      {% if task.completed %}
-      <li>Status: Completed</li>
-      {% else %}
-      <li>Status: Not Completed</li>
-      {% endif %}
-    </ul>
+    <div class="page-shell">
+      <div class="site-hero">
+        <p class="eyebrow">Task Detail</p>
+        <h1>{{ task.title }}</h1>
+        <p class="hero-copy">Details for this task.</p>
+      </div>
 
-    <div>
-      <a href="{% url 'index' %}">Top</a>
-       <a href="{% url 'close' task.id %}">Close</a>
+      <div class="page-content">
+        <div class="detail-card">
+          <ul>
+            <li>Posted at: {{ task.posted_at }}</li>
+            {% if task.due_at %}
+            <li>Due at: {{ task.due_at }}</li>
+            {% endif %}
+            {% if task.completed %}
+            <li><span class="status-badge is-completed">Completed</span></li>
+            {% else %}
+            <li><span class="status-badge is-pending">Not Completed</span></li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="meta-links">
+         <a href="{% url 'update' task.id %}">Edit</a>
+         <a href="{% url 'index' %}">Top へ戻る</a>
+        </div>
+      </div>
     </div>
   </body>
-
 </html>
