@@ -128,3 +128,29 @@ class TodoViewTestCase(TestCase):
     def test_delete_fail(self):
         response = self.client.get('/1/delete')
         self.assertEqual(response.status_code, 404)
+
+    def test_toggle_completed_post(self):
+        task = Task(title='task1')
+        task.save()
+
+        response = self.client.post('/{}/toggle/'.format(task.pk))
+        self.assertEqual(response.status_code, 302)
+
+        task.refresh_from_db()
+        self.assertTrue(task.completed)
+
+        response = self.client.post('/{}/toggle/'.format(task.pk))
+        self.assertEqual(response.status_code, 302)
+
+        task.refresh_from_db()
+        self.assertFalse(task.completed)
+
+    def test_toggle_completed_get_redirects(self):
+        task = Task(title='task1')
+        task.save()
+
+        response = self.client.get('/{}/toggle/'.format(task.pk))
+        self.assertEqual(response.status_code, 302)
+
+        task.refresh_from_db()
+        self.assertFalse(task.completed)
