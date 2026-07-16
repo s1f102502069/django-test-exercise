@@ -39,6 +39,10 @@
          <a href="{% url 'index' %}">Top へ戻る</a>
          <a href="{% url 'delete' task.id %}">Delete</a>
         </div>
+        <div>
+         <a href="{% url 'index' %}">Top</a>
+          <a href="{% url 'close' task.id %}">Close</a>
+        </div>
       </div>
     </div>
   </body>

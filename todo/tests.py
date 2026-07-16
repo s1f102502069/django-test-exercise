@@ -137,6 +137,11 @@ class TodoViewTestCase(TestCase):
         task.save()
 
         response = self.client.post('/{}/toggle/'.format(task.pk))
+    def test_close_success(self):
+        task = Task(title='task1')
+        task.save()
+
+        response = self.client.get('/{}/close'.format(task.pk))
         self.assertEqual(response.status_code, 302)
 
         task.refresh_from_db()
@@ -157,3 +162,6 @@ class TodoViewTestCase(TestCase):
 
         task.refresh_from_db()
         self.assertFalse(task.completed)
+    def test_close_fail(self):
+        response = self.client.get('/1/close')
+        self.assertEqual(response.status_code, 404)
