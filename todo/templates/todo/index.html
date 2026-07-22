@@ -47,7 +47,7 @@
             <ul>
               <li>Posted at: {{ task.posted_at }}</li>
               {% if task.due_at %}
-              <li>Due at: {{ task.due_at }}</li>
+              <li>Due at: {{ task.due_at }}</li><span style="font-weight: bold; color: #ff4757; margin-left: 10px;">({{ task.get_remaining_days }})</span>
               {% endif %}
               {% if task.completed %}
               <li><span class="status-badge is-completed">Completed</span></li>
